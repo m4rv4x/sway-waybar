@@ -1,0 +1,269 @@
+// -*- mode: jsonc -*-
+{
+    "layer": "top",
+    "position": "bottom",
+    "height": 30,
+    "spacing": 0,
+    "background": "#1e1e2e",
+    "modules-left": [
+        "sway/workspaces",
+        "sway/mode",
+        "sway/scratchpad",
+        "custom/media"
+    ],
+    "modules-center": [
+        "sway/window"
+    ],
+    "modules-right": [
+        "custom/terminal",
+        "custom/browser",
+        "custom/files",
+        "custom/cursor-editor",
+        "custom/ferdium",
+        //"mpd",
+        "idle_inhibitor",
+        "network",
+        "network#vpn",
+        "power-profiles-daemon",
+        "cpu",
+        "memory",
+        "disk",
+        "temperature",
+        "pulseaudio",
+        "backlight",
+        //"keyboard-state",
+        //"sway/language",
+        "battery",
+        //"battery#bat2",
+        "clock",
+        "tray",
+        "custom/power"
+    ],
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "warp-on-scroll": false,
+        "format": "{icon}",
+        "persistent_workspaces": {
+            "1": {},
+            "2": {},
+            "3": {},
+            "4": {},
+            "5": {},
+            "6": {},
+            "7": {},
+            "8": {},
+            "9": {},
+            "10": {}
+        },
+        "format-icons": {
+            "1" : "",
+            "2" : "",
+            "3" : "",
+            "4" : "",
+            "5" : "",
+            "6" : "",
+            "7" : "",
+            "8" : ""
+        },
+        "on-click": "activate"
+    },
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+    "custom/cursor-editor": {
+        "format": "󰎚 ",
+        "tooltip": true,
+        "tooltip-format": "Cursor Editor",
+        "on-click": "swaymsg exec \"$(ls /home/dirtyak/Apps/Cursor-*-x86_64.AppImage | head -n1) --ozone-platform=wayland\""
+    },
+    "sway/scratchpad": {
+        "format": "{icon} {count}",
+        "show-empty": false,
+        "format-icons": ["󰆍", "󰆍"],
+        "tooltip": true,
+        "tooltip-format": "{app}: {title}"
+    },
+    "mpd": {
+        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
+        "format-disconnected": "Disconnected ",
+        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
+        "unknown-tag": "N/A",
+        "interval": 5,
+        "consume-icons": {
+            "on": " "
+        },
+        "random-icons": {
+            "off": "<span color=\"#f53c3c\"></span> ",
+            "on": " "
+        },
+        "repeat-icons": {
+            "on": " "
+        },
+        "single-icons": {
+            "on": "1 "
+        },
+        "state-icons": {
+            "paused": "",
+            "playing": ""
+        },
+        "tooltip-format": "MPD (connected)",
+        "tooltip-format-disconnected": "MPD (disconnected)"
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "tray": {
+        "icon-size": 21,
+        "spacing": 10
+    },
+    "clock": {
+        // "timezone": "America/New_York",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%d-%m-%Y}"
+    },
+    "cpu": {
+        "format": "<span color=\"#a6e3a1\">{usage}% </span>",
+        "tooltip": false,
+        "states": {
+            "warning": 50,
+            "critical": 90
+        },
+        "format-warning": "<span color=\"#fab387\">{usage}% </span>",
+        "format-critical": "<span color=\"#f38ba8\">{usage}% </span>",
+        "interval": 10
+    },
+    "power-profiles-daemon": {
+        "format": "{icon}",
+        "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+        "tooltip": true,
+        "format-icons": {
+            "default": "",
+            "performance": "",
+            "balanced": "",
+            "power-saver": ""
+        },
+        "interval": 60
+    },
+    "memory": {
+        "format": "<span color=\"#a6e3a1\">{}% </span>",
+        "tooltip": true,
+        "tooltip-format": "Memory: {percentage}% used",
+        "states": {
+            "warning": 70,
+            "critical": 90
+        },
+        "format-warning": "<span color=\"#fab387\">{}% </span>",
+        "format-critical": "<span color=\"#f38ba8\">{}% </span>",
+        "interval": 10
+    },
+    "temperature": {
+        "thermal-zone": 8,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        "warning-threshold": 60,
+        "format": "{temperatureC}°C {icon}",
+        "format-critical": "{temperatureC}°C {icon}",
+        "format-warning": "{temperatureC}°C {icon}",
+        "format-icons": ["", "", ""],
+        "interval": 10
+    },
+    "disk": {
+        "format": "<span color=\"#a6e3a1\">{percentage_used}% 󰋊</span>",
+        "tooltip-format": "Disk: {percentage_used}% used",
+        "states": {
+            "warning": 50,
+            "critical": 90
+        },
+        "format-warning": "<span color=\"#fab387\">{percentage_used}% 󰋊</span>",
+        "format-critical": "<span color=\"#f38ba8\">{percentage_used}% 󰋊</span>",
+        "interval": 300
+    },
+    "backlight": {
+        // "device": "acpi_video1",
+        "format": "{percent}% {icon}",
+        "format-icons": ["", "", "", "", "", "", "", "", ""],
+        "interval": 60
+    },
+    "battery": {
+        "states": {
+            "good": 80,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "<span color=\"#a6e3a1\">{capacity}% {icon}</span>",
+        "format-full": "<span color=\"#a6e3a1\">{capacity}% {icon}</span>",
+        "format-charging": "<span color=\"#a6e3a1\">{capacity}% </span>",
+        "format-plugged": "<span color=\"#a6e3a1\">{capacity}% </span>",
+        "format-alt": "<span color=\"#a6e3a1\">{time} {icon}</span>",
+        "format-warning": "<span color=\"#fab387\">{capacity}% {icon}</span>",
+        "format-critical": "<span color=\"#f38ba8\">{capacity}% {icon}</span>",
+        "format-icons": ["", "", "", "", ""],
+        "tooltip": true,
+        "tooltip-format": "Battery: {capacity}% ({time})",
+        "on-click": "swaymsg exec 'battery-status'",
+        "interval": 120
+    },
+    "battery#bat2": {
+        "bat": "BAT2"
+    },
+    "network": {
+        "interface": "wlan0", // (Optional) To force the use of this interface
+        "format-wifi": "{signalStrength}% ",
+        "format-ethernet": "{ipaddr}/{cidr} ",
+        "tooltip-format": "{ifname} via {ipaddr}/{cidr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠",
+        "interval": 120,
+        "on-click": "swaymsg exec 'nmtui'"
+    },
+    "network#vpn": {
+        "interface": "proton0",
+        "format": "<span foreground='#89b4fa'>VPN </span>",
+        "format-disconnected": "No VPN ⚠",
+        "tooltip-format": "VPN: {ifname} via {ipaddr}/{cidr} \nIP: {ipaddr}",
+        "on-click": "swaymsg exec 'ip=$(curl -s https://ipinfo.io/ip) && country=$(curl -s https://ipinfo.io/country) && notify-send -r 1234 -t 3000 \"VPN Info\" \"IP: $ip\\nCountry: $country\"'",
+        "interval": 300
+    },
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{volume}% {icon} {format_source}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol",
+        "tooltip-format": "{desc}"
+    },
+    "custom/media": {
+        "format": "{icon} {text}",
+        "return-type": "json",
+        "max-length": 40,
+        "format-icons": {
+            "spotify": "",
+            "default": "🎜"
+        },
+        "escape": true,
+        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
+        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+    },
+    "custom/power": {
+        "format": "⏻",
+        "tooltip": false,
+        "on-click": "swaylock -i ~/Pictures/wallpaper/brandon-griggs-PcAxQ_BMjnk-unsplash.jpg -F & sleep 2 && systemctl suspend"
+    }
+}
